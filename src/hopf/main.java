@@ -1,50 +1,27 @@
 package hopf;
 
 import java.util.Scanner;
-import java.io.IOException;
-import java.io.FileReader;
-import java.io.BufferedReader;
+
+import hopf.Reader;
 
 public class main {
 	public static void main(String[] args) {
-		Scanner read = new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);
 		
+		// Enter the file path for the stored pattern
 		System.out.println("Please enter the stored pattern file: ");
-		String storedPattern = read.nextLine();
-		System.out.println(storedPattern);
+		String storedPattern = scan.nextLine();
+		System.out.println("Stored Pattern file: " + storedPattern);
 		
-//		System.out.println("Please enter the incomplete pattern file: ");
-//		String incompletePattern = read.nextLine();
-//		System.out.println(incompletePattern);
+		// Enter the file path for the incomplete pattern
+		System.out.println("Please enter the incomplete pattern file: ");
+		String incompletePattern = scan.nextLine();
+		System.out.println("Incomplete pattern file: " + incompletePattern);
 		
-		read.close();
+		scan.close();
 		
-		BufferedReader br = null;
-		FileReader fr = null;
-
-		try {
-			fr = new FileReader(storedPattern);
-			br = new BufferedReader(fr);
-
-			String file;
-
-			br = new BufferedReader(new FileReader(storedPattern));
-
-			while ((file = br.readLine()) != null) {
-				System.out.println(file);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (br != null)
-					br.close();
-	
-				if (fr != null)
-					fr.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		}
+		// Call the Reader class to display the text file content
+		Reader.readFile(storedPattern);
+		Reader.readFile(incompletePattern);
 	}
 }
