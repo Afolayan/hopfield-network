@@ -4,14 +4,13 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
 
+/**
+ * Class Reader
+ * @author Daniel Gynn (DJG44)
+ * Reads in the location of the input text file and returns the content.
+ */
 public class Reader {
-	private String pattern;
-
-	public Reader() {
-		this.setPattern(pattern);
-	}
-	
-	public static void readFile(String pattern) {
+	public static String readFile(String pattern) {
 		BufferedReader br = null;
 		FileReader fr = null;
 
@@ -19,12 +18,12 @@ public class Reader {
 			fr = new FileReader(pattern);
 			br = new BufferedReader(fr);
 
-			String file;
+			String content;
 
 			br = new BufferedReader(new FileReader(pattern));
 
-			while ((file = br.readLine()) != null) {
-				System.out.println("File contents: " + file);
+			while ((content = br.readLine()) != null) {
+				return content;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -39,13 +38,6 @@ public class Reader {
 				ex.printStackTrace();
 			}
 		}
-	}
-
-	public String getPattern() {
 		return pattern;
-	}
-
-	public void setPattern(String pattern) {
-		this.pattern = pattern;
 	}
 }

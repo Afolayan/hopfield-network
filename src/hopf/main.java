@@ -1,27 +1,24 @@
 package hopf;
 
-import java.util.Scanner;
-
 import hopf.Reader;
 
-public class main {
+/**
+ * Class Main
+ * @author Daniel Gynn (DJG44)
+ * Stores the input values from the console and runs the Hopfield network with the specified patterns.
+ */
+public class Main {
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+		// Get pattern file paths from command line input
+		String storedPatternInput = args[0];
+		String incompletePatternInput = args[1];
 		
-		// Enter the file path for the stored pattern
-		System.out.println("Please enter the stored pattern file: ");
-		String storedPattern = scan.nextLine();
-		System.out.println("Stored Pattern file: " + storedPattern);
-		
-		// Enter the file path for the incomplete pattern
-		System.out.println("Please enter the incomplete pattern file: ");
-		String incompletePattern = scan.nextLine();
-		System.out.println("Incomplete pattern file: " + incompletePattern);
-		
-		scan.close();
-		
-		// Call the Reader class to display the text file content
-		Reader.readFile(storedPattern);
-		Reader.readFile(incompletePattern);
+		// Store storedPattern and print to the console
+		String sp = Reader.readFile(storedPatternInput);
+		System.out.println("Stored pattern: " + sp);
+
+		// Store incomepletePattern and print to the console
+		String ip = Reader.readFile(incompletePatternInput);
+		System.out.println("Incomplete pattern: " + ip);
 	}
 }
