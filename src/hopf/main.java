@@ -13,19 +13,19 @@ public class Main {
 		// Get pattern file paths from command line input
 		String storedPatternInput = args[0];
 		String incompletePatternInput = args[1];
-		
+
 		// Store patterns from file reader
 		String sp = Reader.readFile(storedPatternInput);
 		String ip = Reader.readFile(incompletePatternInput);
-		
+
 		// Create new Hopfield class for stored pattern and print to the console
-        Hopfield spNetwork = new Hopfield("Stored", sp);
-        spNetwork.printPattern();
-        int[] intPattern = spNetwork.getPattern(sp);
-        spNetwork.train(intPattern);
-        
-		// Create new Hopfield class for incomplete pattern and print to the console
-        Hopfield ipNetwork = new Hopfield("Incomplete", ip);
-        ipNetwork.printPattern();
+	    Hopfield hopfield = new Hopfield("Incomplete", ip);
+	    hopfield.printPattern();
+	
+	    int[] spPattern = hopfield.getPattern(sp);
+	    hopfield.learn(spPattern);
+
+		int[] ipPattern = hopfield.getPattern(ip);
+		hopfield.makeNetwork(ipPattern);
 	}
 }
