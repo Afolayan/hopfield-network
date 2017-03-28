@@ -10,6 +10,9 @@ import java.io.BufferedReader;
  * Reads in the location of the input text file and returns the content.
  */
 public class Reader {
+	/*
+	 * Takes in a String for the file path and returns the contents.
+	 */
 	public static String readFile(String pattern) {
 		BufferedReader br = null;
 		FileReader fr = null;

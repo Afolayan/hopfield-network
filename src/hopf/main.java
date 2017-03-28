@@ -1,6 +1,7 @@
 package hopf;
 
 import hopf.Reader;
+import hopf.Hopfield;
 
 /**
  * Class Main
@@ -13,12 +14,18 @@ public class Main {
 		String storedPatternInput = args[0];
 		String incompletePatternInput = args[1];
 		
-		// Store storedPattern and print to the console
+		// Store patterns from file reader
 		String sp = Reader.readFile(storedPatternInput);
-		System.out.println("Stored pattern: " + sp);
-
-		// Store incomepletePattern and print to the console
 		String ip = Reader.readFile(incompletePatternInput);
-		System.out.println("Incomplete pattern: " + ip);
+		
+		// Create new Hopfield class for stored pattern and print to the console
+        Hopfield spNetwork = new Hopfield("Stored", sp);
+        spNetwork.printPattern();
+        int[] intPattern = spNetwork.getPattern(sp);
+        spNetwork.train(intPattern);
+        
+		// Create new Hopfield class for incomplete pattern and print to the console
+        Hopfield ipNetwork = new Hopfield("Incomplete", ip);
+        ipNetwork.printPattern();
 	}
 }
