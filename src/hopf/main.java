@@ -9,6 +9,8 @@ import hopf.Hopfield;
  * Stores the input values from the console and runs the Hopfield network with the specified patterns.
  */
 public class Main {
+    static Hopfield trainingPattern;
+   
 	public static void main(String[] args) {
 		// Get pattern file paths from command line input
 		String storedPatternInput = args[0];
@@ -18,14 +20,15 @@ public class Main {
 		String sp = Reader.readFile(storedPatternInput);
 		String ip = Reader.readFile(incompletePatternInput);
 
-		// Create new Hopfield class for stored pattern and print to the console
-	    Hopfield hopfield = new Hopfield("Incomplete", ip);
-	    hopfield.printPattern();
-	
-	    int[] spPattern = hopfield.getPattern(sp);
-	    hopfield.learn(spPattern);
-
-		int[] ipPattern = hopfield.getPattern(ip);
-		hopfield.makeNetwork(ipPattern);
+	    // Get the patterns into int array format
+	    float[] storedPattern = Hopfield.getPattern(sp);
+		float[] incompletePattern = Hopfield.getPattern(ip);
+		
+		// Get training pattern and run the learning function.
+		trainingPattern = new Hopfield(storedPattern.length);
+		trainingPattern.learn(storedPattern);
+		
+		// Generate the network output.
+        Hopfield.generateOutput(trainingPattern, incompletePattern);
 	}
 }
