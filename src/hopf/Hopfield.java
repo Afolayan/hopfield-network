@@ -23,6 +23,17 @@ public class Hopfield {
         tempStorage = new float[patternLength];
     }
     
+//	public static float[] getTrainingData(String[] sp) {
+//		// For each line in the training 
+//		for (int i = 0; i < sp.length;) {
+//		    // Get the stored patterns into int array format, by lines.
+//		    float[] storedPattern = Hopfield.getPattern(sp[i]);
+//		    System.out.println("GETDATA: " + storedPattern);
+//		    return storedPattern;
+//		}
+//		return null;
+//	}
+    
     static void generateOutput(Hopfield test, float[] pattern) {
         float[] data = new float[patternLength];
         

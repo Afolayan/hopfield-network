@@ -1,6 +1,7 @@
 package hopf;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.BufferedReader;
 
@@ -10,37 +11,62 @@ import java.io.BufferedReader;
  * Reads in the location of the input text file and returns the content.
  */
 public class Reader {
-	/*
-	 * Takes in a String for the file path and returns the contents.
-	 */
-	public static String readFile(String pattern) {
-		BufferedReader br = null;
-		FileReader fr = null;
-
+	public static String[] readFile(String strings) throws IOException {
+		BufferedReader BufferedReader = new BufferedReader(new FileReader(strings));
+		String str;
+	
 		try {
-			fr = new FileReader(pattern);
-			br = new BufferedReader(fr);
-
-			String content;
-
-			br = new BufferedReader(new FileReader(pattern));
-
-			while ((content = br.readLine()) != null) {
-				return content;
+			ArrayList<String> list = new ArrayList<String>();
+			while((str = BufferedReader.readLine()) != null){
+			    list.add(str);
 			}
+		
+			String[] stringArr = list.toArray(new String[0]);
+			return stringArr;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (br != null)
-					br.close();
-	
-				if (fr != null)
-					fr.close();
+				if (BufferedReader != null) {
+					BufferedReader.close();
+				}
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
 		}
-		return pattern;
+		return null;
 	}
+	/*
+	 * Takes in a String for the file path and returns the contents.
+	 */
+//	public static String readFile(String strings) {
+//		BufferedReader br = null;
+//		FileReader fr = null;
+//		
+//		try {
+//			fr = new FileReader(strings);
+//			br = new BufferedReader(fr);
+//
+//			String content;
+//
+//			br = new BufferedReader(new FileReader(strings));
+//
+//			while ((content = br.readLine()) != null) {
+//				return content;
+//			}					
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (br != null)
+//					br.close();
+//	
+//				if (fr != null)
+//					fr.close();
+//			} catch (IOException ex) {
+//				ex.printStackTrace();
+//			}
+//		}
+//		return strings;
+//	}
 }
